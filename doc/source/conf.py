@@ -183,19 +183,6 @@ latex_elements = {
     # Additional stuff for the LaTeX preamble.
     #
     'preamble': r'''
-% In the parameters etc. sections, align uniformly, and adjust label emphasis
-\usepackage{expdlist}
-\let\latexdescription=\description
-\let\endlatexdescription=\enddescription
-\renewenvironment{description}%
-{\begin{latexdescription}[\setleftmargin{60pt}\breaklabel\setlabelstyle{\bfseries\itshape}]}%
-{\end{latexdescription}}
-% Fix bug in expdlist's modified \@item
-\usepackage{etoolbox}
-\makeatletter
-\patchcmd\@item{{\@breaklabel} }{{\@breaklabel}}{}{}
-\makeatother
-
 % Make Examples/etc section headers smaller and more compact
 \titlespacing*{\paragraph}{0pt}{1ex}{0pt}
 

@@ -43,12 +43,18 @@ def process_tex(lines):
 
     And fix autosummary LaTeX bug in Sphinx < 1.7.3
     (cf https://github.com/sphinx-doc/sphinx/issues/4790)
+
+    Force description of parameters to line after parameter name itself.
     """
     new_lines = []
     for line in lines:
         line = re.sub(r'^\s*\\strong{See Also:}\s*$', r'\paragraph{See Also}', line)
 
         line = line.replace(r'p{0.5\linewidth}', r'\X{1}{2}')
+
+        line = re.sub(r'^(\\item\[.*\] \\leavevmode)(^{)', '\g<1>\g<2>\\par ', line)
+
+        line = re.sub(r'^(\\item\[.*\] \\leavevmode{\[}.*{\]})', '\g<1>\\par ', line)
 
         if (line.startswith(r'\section{scipy.')
             or line.startswith(r'\subsection{scipy.')
